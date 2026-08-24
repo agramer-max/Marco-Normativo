@@ -3,951 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Cumplimiento Regulatorio - IOL invertironline</title>
-    <!-- Tailwind CSS -->
+    <title>Dashboard de Cumplimiento Regulatorio | IOL</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        iolViolet: {
-                            50: '#f5f3ff',
-                            100: '#ede9fe',
-                            200: '#ddd6fe',
-                            500: '#7c3aed',
-                            600: '#6d28d9',
-                            700: '#5b21b6',
-                            900: '#4c1d95',
-                            intense: '#6122e6',
-                            dark: '#1e0b36',
-                        },
-                        iolTeal: {
-                            400: '#2dd4bf',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            neon: '#00f0a8'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            body {
-                background: white;
-                color: black;
-            }
-            .print-card {
-                border: 1px solid #e2e8f0 !important;
-                box-shadow: none !important;
-            }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .iol-bg-dark { background-color: #170045; }
+        .iol-bg-primary { background-color: #3b008d; }
+        .iol-bg-gradient { background: linear-gradient(135deg, #170045 0%, #3b008d 100%); }
+        .iol-text-accent { color: #00d897; }
+        .iol-bg-accent { background-color: #00d897; }
+        .iol-border-accent { border-color: #00d897; }
+        
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+<body class="text-gray-800">
 
-    <!-- Header / Navbar -->
-    <header class="bg-iolViolet-dark text-white shadow-md border-b border-iolViolet-500/30 no-print overflow-hidden">
-        <!-- Area Compliance Header Banner Integration -->
-        <div class="bg-gradient-to-r from-[#120726] via-[#1e0b36] to-[#2a0e4f] border-b border-iolViolet-500/20 px-4 py-2.5 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
-                <!-- Vectorized Compliance Banner -->
-                <div class="flex items-center gap-4 sm:gap-6">
-                    <div class="flex items-center gap-2">
-                        <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-iolTeal-neon flex items-center justify-center text-slate-950 font-black text-base sm:text-lg shadow-sm shrink-0">
-                            <span class="mt-[-2px]">i</span>
-                        </div>
-                        <span class="text-base sm:text-lg font-black tracking-tight text-white">Compliance</span>
-                    </div>
-                    <div class="hidden md:block h-5 w-px bg-white/20"></div>
-                    <div class="hidden md:flex items-center gap-2">
-                        <span class="text-sm font-bold text-slate-300">IOL Inversiones</span>
-                    </div>
-                </div>
-
-                <div class="flex items-center space-x-2 text-xs text-iolTeal-neon font-semibold bg-slate-900/60 px-3 py-1.5 rounded-full border border-iolTeal-neon/30">
-                    <i class="fas fa-shield-alt text-iolTeal-neon"></i>
-                    <span>Guía de Cumplimiento IOL</span>
-                </div>
+    <!-- Header Corporativo -->
+    <header class="iol-bg-gradient shadow-lg">
+        <div class="w-full border-b border-white/10 px-6 py-3 flex justify-between items-center text-white text-sm">
+            <div class="flex items-center gap-3">
+                <svg viewBox="0 0 400 60" class="h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="20" cy="30" r="15" fill="#00d897"/>
+                    <text x="17" y="35" font-family="Arial" font-weight="bold" font-size="14" fill="#170045">i</text>
+                    <text x="45" y="36" font-family="Arial" font-weight="bold" font-size="22" fill="white">Compliance</text>
+                    <text x="180" y="36" font-family="Arial" font-weight="normal" font-size="18" fill="white">| IOL Inversiones</text>
+                </svg>
+            </div>
+            <div class="hidden md:flex bg-white/10 px-4 py-1.5 rounded-full border border-white/20 items-center gap-2">
+                <i class="fas fa-shield-alt iol-text-accent"></i>
+                <span class="font-medium iol-text-accent">Guía de Cumplimiento IOL</span>
             </div>
         </div>
-
-        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div class="flex items-center space-x-4">
-                <!-- IOL App Logo Icon Badge (Vectorized SVG) -->
-                <div class="shrink-0 p-1 bg-gradient-to-br from-iolViolet-500/40 to-iolViolet-dark rounded-2xl border border-iolViolet-500/40 shadow-lg">
-                    <svg class="h-10 w-10 sm:h-11 sm:w-11 rounded-xl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="100" height="100" rx="24" fill="#2E0A60"/>
-                        <circle cx="28" cy="28" r="9" fill="#00f0a8"/>
-                        <rect x="20" y="44" width="16" height="36" rx="8" fill="white"/>
-                        <circle cx="53" cy="53" r="22" stroke="white" stroke-width="12" fill="none"/>
-                        <path d="M 53 31 A 22 22 0 0 0 31 53 L 40 53 A 13 13 0 0 1 53 40 Z" fill="#00f0a8"/>
-                        <rect x="78" y="24" width="14" height="56" rx="7" fill="white"/>
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
-                        Mapa de Cumplimiento Regulatorio
-                    </h1>
-                    <p class="text-xs text-iolViolet-200 mt-0.5 font-medium">Guía Visual Informativa de Normativas</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="bg-white rounded-xl p-1 shadow-md w-14 h-14 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-12 h-12" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" rx="20" fill="#170045"/>
+                            <circle cx="30" cy="35" r="8" fill="#00d897"/>
+                            <rect x="25" y="50" width="10" height="25" rx="3" fill="white"/>
+                            <path d="M50 30 A 20 20 0 1 1 49.9 30" stroke="white" stroke-width="12" fill="none"/>
+                            <path d="M50 30 A 20 20 0 0 0 30 50" stroke="#00d897" stroke-width="12" fill="none"/>
+                            <rect x="75" y="30" width="10" height="45" rx="3" fill="white"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white tracking-tight">Mapa de Cumplimiento Regulatorio</h1>
+                        <p class="text-indigo-200 text-sm mt-1">Guía Visual Informativa de Normativas</p>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Workspace -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 sm:px-6 lg:px-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
 
-        <!-- ==================== SECCIÓN 1: CONSULTA REGULATORIA ==================== -->
-        <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8 no-print" id="asistente-seccion">
-            <div class="flex items-center space-x-3 mb-4">
-                <div class="bg-iolViolet-50 p-2 rounded-lg">
-                    <i class="fas fa-filter text-iolViolet-intense text-xl"></i>
-                </div>
-                <div>
-                    <h2 class="text-lg font-extrabold text-slate-900">1. Consulta Regulatoria</h2>
-                    <p class="text-xs text-slate-500">Filtrado y segmentación según el perfil de cliente para definir el alcance normativo aplicable.</p>
-                </div>
+        <!-- ASISTENTE REGULATORIO -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="iol-bg-dark px-6 py-4 border-b border-indigo-900/30 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-compass iol-text-accent"></i> Consulta Regulatoria
+                </h2>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Selector de Perfil y Operación -->
-                <div class="lg:col-span-4 flex flex-col gap-4">
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Paso 1: Tipo de Cliente</label>
-                        <select id="wizardProfile" onchange="populateOperations()" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-iolViolet-500 focus:outline-none transition">
-                            <option value="humana">1) Persona Humana Residente</option>
-                            <option value="cartera">2) Cartera Propia de IOL</option>
-                            <option value="juridica">3) Persona Jurídica (Empresa)</option>
-                            <option value="cdi_cie">4) Cliente CDI/CIE o Intermediario CUIT</option>
-                            <option value="controlante">5) Accionista o Controlante (&ge; 25% de votos)</option>
+            
+            <div class="p-6 md:p-8 bg-gray-50">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">1. Seleccione Tipo de Cliente</label>
+                        <select id="clientType" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#3b008d] focus:border-[#3b008d] block p-3 shadow-sm transition-colors">
+                            <option value="">-- Elija un perfil --</option>
+                            <option value="ph_residente">Persona Humana Residente</option>
+                            <option value="persona_juridica">Persona Jurídica</option>
+                            <option value="cdi_cie">Cliente con CDI/CIE o Intermediario con CUIT</option>
+                            <option value="cartera_propia">Cartera Propia de IOL</option>
                         </select>
-                        <p class="text-[11px] text-slate-500 mt-2">La selección adaptará automáticamente las opciones operativas válidas.</p>
                     </div>
-
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Paso 2: Operación / Escenario</label>
-                        <select id="wizardAction" onchange="runWizard()" class="w-full bg-white border border-slate-300 rounded-lg p-2.5 text-sm font-semibold text-slate-700 focus:ring-2 focus:ring-iolViolet-500 focus:outline-none transition">
-                            <!-- Options populated dynamically -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">2. Seleccione Operación</label>
+                        <select id="operationType" class="w-full bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#3b008d] focus:border-[#3b008d] block p-3 shadow-sm transition-colors" disabled>
+                            <option value="">-- Primero elija un cliente --</option>
                         </select>
                     </div>
                 </div>
 
-                <!-- Bloque de Resultados Detallado y Amigable -->
-                <div class="lg:col-span-8 bg-slate-900 text-white p-6 rounded-xl flex flex-col justify-between shadow-inner border border-iolViolet-900/50">
-                    <div class="space-y-4">
-                        <div class="text-[10px] uppercase tracking-wider text-iolTeal-neon font-extrabold flex items-center justify-between">
-                            <span>Esquema de Viabilidad de Operaciones</span>
-                            <span class="bg-iolViolet-900 text-iolViolet-200 px-2 py-0.5 rounded text-[9px] font-mono">IOL Cumplimiento</span>
-                        </div>
-                        
-                        <div id="wizardResultBadge" class="inline-flex items-center w-fit px-3 py-1 rounded-full text-xs font-bold">
-                            Cargando...
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
-                            <!-- ¿Qué puede hacer? -->
-                            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50">
-                                <h4 class="text-xs font-extrabold text-iolTeal-neon flex items-center gap-1 mb-2">
-                                    <i class="fas fa-check-circle"></i> ¿Qué puede hacer?
-                                </h4>
-                                <p id="wizardCanDo" class="text-[11px] text-slate-300 leading-relaxed">---</p>
-                            </div>
+                <!-- Resultado del Asistente -->
+                <div id="wizardResult" class="hidden fade-in bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+                    <div class="flex items-start gap-4">
+                        <div id="statusIcon" class="mt-1"></div>
+                        <div class="w-full">
+                            <h3 id="resultTitle" class="text-lg font-bold text-gray-900 mb-4"></h3>
                             
-                            <!-- ¿Qué condiciones/restricciones aplican? -->
-                            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50">
-                                <h4 class="text-xs font-extrabold text-amber-400 flex items-center gap-1 mb-2">
-                                    <i class="fas fa-exclamation-circle"></i> Condiciones / Restricciones
-                                </h4>
-                                <p id="wizardRestrictions" class="text-[11px] text-slate-300 leading-relaxed">---</p>
-                            </div>
+                            <div class="space-y-4">
+                                <div id="canDoSection" class="bg-blue-50/50 border border-blue-100 rounded-lg p-4">
+                                    <h4 class="text-sm font-bold text-blue-800 uppercase tracking-wide mb-2"><i class="fas fa-check-circle mr-1"></i> ¿Qué puede hacer?</h4>
+                                    <ul id="canDoList" class="list-disc pl-5 text-sm text-gray-700 space-y-1"></ul>
+                                </div>
 
-                            <!-- Excepciones Aplicables -->
-                            <div class="bg-slate-800/60 p-3 rounded-lg border border-slate-700/50">
-                                <h4 class="text-xs font-extrabold text-indigo-400 flex items-center gap-1 mb-2">
-                                    <i class="fas fa-gift"></i> Excepciones aplicables
-                                </h4>
-                                <p id="wizardExceptions" class="text-[11px] text-slate-300 leading-relaxed">---</p>
+                                <div id="restrictionsSection" class="bg-red-50/50 border border-red-100 rounded-lg p-4 hidden">
+                                    <h4 class="text-sm font-bold text-red-800 uppercase tracking-wide mb-2"><i class="fas fa-exclamation-triangle mr-1"></i> Condiciones y Restricciones</h4>
+                                    <ul id="restrictionsList" class="list-disc pl-5 text-sm text-gray-700 space-y-1"></ul>
+                                </div>
+
+                                <div id="exceptionsSection" class="bg-green-50/50 border border-green-100 rounded-lg p-4 hidden">
+                                    <h4 class="text-sm font-bold text-green-800 uppercase tracking-wide mb-2"><i class="fas fa-unlock-alt mr-1"></i> Excepciones Aplicables</h4>
+                                    <ul id="exceptionsList" class="list-disc pl-5 text-sm text-gray-700 space-y-1"></ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div id="wizardDisclaimer" class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-slate-400 italic flex items-center gap-1.5">
-                        <i class="fas fa-info-circle text-iolTeal-neon text-xs"></i> 
-                        <span>Los resultados simulan los flujos normativos generales para brindar orientación.</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== SECCIÓN DE FINANCIAMIENTO (RG 1018 CNV) ==================== -->
-        <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-8" id="financiamiento-cartel">
-            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-4 mb-4 gap-4">
-                <div class="flex items-center space-x-3">
-                    <div class="bg-amber-50 p-2 rounded-lg">
-                        <i class="fas fa-hand-holding-usd text-amber-600 text-xl"></i>
+        <!-- CARTEL RG 1018 FINANCIAMIENTO -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+             <div class="bg-gradient-to-r from-gray-800 to-gray-700 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-money-bill-wave text-yellow-400"></i> RG 1018 CNV: Normas de Financiamiento en ARS
+                </h2>
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-gray-600 mb-6 border-l-4 border-yellow-400 pl-3">
+                    Regla General: No se puede mantener financiamiento en Moneda Local (mantener posiciones tomadoras) para la venta de títulos valores con liquidación en moneda extranjera.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-red-200 rounded-xl bg-red-50/30 overflow-hidden">
+                        <div class="bg-red-100 px-4 py-2 border-b border-red-200 font-bold text-red-800 flex items-center gap-2">
+                            <i class="fas fa-times-circle"></i> ¿QUÉ SÍ ES FINANCIAMIENTO? (Inhabilita)
+                        </div>
+                        <ul class="p-4 space-y-2 text-sm text-gray-700">
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Los saldos deudores en cuentas comitentes.</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Cauciones / Pases (Tomadoras).</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Préstamo de títulos otorgados por el mercado.</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Emisión de pagarés bursátiles.</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Negociación de cheques.</li>
+                            <li><i class="fas fa-check text-red-500 mr-2"></i>Préstamos de títulos pactados entre comitentes.</li>
+                        </ul>
                     </div>
-                    <div>
-                        <h2 class="text-lg font-bold text-slate-900">RG 1018 CNV: Normas de Financiamiento en ARS</h2>
-                        <p class="text-xs text-slate-500">¿Qué operaciones interactúan con la operatoria de títulos valores liquidados en moneda extranjera?</p>
+                    <div class="border border-green-200 rounded-xl bg-green-50/30 overflow-hidden">
+                        <div class="bg-green-100 px-4 py-2 border-b border-green-200 font-bold text-green-800 flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i> ¿QUÉ NO ES FINANCIAMIENTO? (Permitido)
+                        </div>
+                        <ul class="p-4 space-y-2 text-sm text-gray-700">
+                            <li><i class="fas fa-times text-green-500 mr-2"></i>El financiamiento obtenido por el emisor de Obligaciones Negociables o Valores de Corto Plazo autorizados por CNV.</li>
+                            <li><i class="fas fa-times text-green-500 mr-2"></i>El financiamiento obtenido por el emisor de títulos de deuda en el marco de fideicomisos financieros autorizados por CNV.</li>
+                        </ul>
                     </div>
                 </div>
-                <span class="text-xs bg-amber-50 text-amber-800 font-semibold border border-amber-200 px-3 py-1 rounded-full">
-                    Pauta de Control General
-                </span>
+                <div class="mt-6 bg-indigo-50 border border-indigo-100 rounded-lg p-4 text-sm text-indigo-800 flex items-start gap-3">
+                    <i class="fas fa-lightbulb mt-0.5 text-indigo-500"></i>
+                    <p><strong>Aclaración Operativa:</strong> Se permite a las comitentes vender MEP/Cable con cauciones abiertas en la misma fecha de liquidación siempre y cuando se cierre la caución antes de la venta.</p>
+                </div>
             </div>
+        </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- SÍ es Financiamiento -->
-                <div class="bg-amber-50/20 border border-amber-200/60 rounded-xl p-5">
-                    <div class="flex items-center space-x-2 text-amber-900 font-extrabold text-sm mb-3">
-                        <i class="fas fa-info-circle"></i>
-                        <h3>¿QUÉ SÍ ES FINANCIAMIENTO?</h3>
+        <!-- CARTEL LÍMITE DE $200.000.000 Y PAUTAS DE CÓMPUTO -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <div class="bg-gradient-to-r from-indigo-900 to-purple-800 px-6 py-4 flex justify-between items-center">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-calculator text-emerald-400"></i> Pautas de Cómputo: Límite de $200.000.000 (CDI/CIE e Intermediarios)
+                </h2>
+            </div>
+            <div class="p-6 text-sm text-gray-700 space-y-4">
+                <div class="bg-purple-50 border-l-4 border-purple-600 p-3.5 rounded-r-lg text-purple-900">
+                    <strong>Alcance de Cómputo:</strong> El tope diario resulta aplicable por <strong>subcuenta comitente</strong> y para el <strong>conjunto de subcuentas comitentes</strong> de las que fuera titular o cotitular un mismo sujeto.
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                        <h4 class="font-bold text-[#170045] mb-2 flex items-center gap-2">
+                            <i class="fas fa-exchange-alt text-[#3b008d]"></i> Conversiones y Transferencias
+                        </h4>
+                        <p class="text-xs text-gray-600">
+                            La conversión entre acciones ordinarias y CEDEARs o ADRs (en cualquier sentido) es considerada como una <strong>transferencia de valores negociables desde o hacia entidades depositarias del exterior</strong>.
+                        </p>
                     </div>
-                    <p class="text-xs text-slate-600 mb-3 leading-relaxed">
-                        Si tienes vigentes o en curso estas operaciones, no se permite de manera simultánea la venta de títulos valores con liquidación en moneda extranjera (MEP o Cable) en el mercado de capitales:
-                    </p>
-                    <ul class="space-y-2 text-xs font-medium text-slate-700">
-                        <li class="flex items-start gap-2 bg-white p-2 rounded border border-slate-150">
-                            <span class="text-amber-500 mt-0.5"><i class="fas fa-check-circle"></i></span>
-                            <div>
-                                <strong>Saldos deudores en cuenta comitente:</strong> Márgenes negativos o descubiertos de cuenta.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2 bg-white p-2 rounded border border-slate-150">
-                            <span class="text-amber-500 mt-0.5"><i class="fas fa-check-circle"></i></span>
-                            <div>
-                                <strong>Cauciones / Pases:</strong> Posiciones tomadoras de liquidez en el mercado local.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2 bg-white p-2 rounded border border-slate-150">
-                            <span class="text-amber-500 mt-0.5"><i class="fas fa-check-circle"></i></span>
-                            <div>
-                                <strong>Préstamo de títulos otorgados por el mercado:</strong> Arrendamiento de valores regulados.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2 bg-white p-2 rounded border border-slate-150">
-                            <span class="text-amber-500 mt-0.5"><i class="fas fa-check-circle"></i></span>
-                            <div>
-                                <strong>Emisión de pagarés bursátiles:</strong> Financiamiento corporativo directo por canal de bolsa.
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2 bg-white p-2 rounded border border-slate-150">
-                            <span class="text-amber-500 mt-0.5"><i class="fas fa-check-circle"></i></span>
-                            <div>
-                                <strong>Negociación de cheques:</strong> Descuento de cheques de pago diferido (Echeqs).
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2 bg-white p-2 rounded border border-slate-150">
-                            <span class="text-amber-500 mt-0.5"><i class="fas fa-check-circle"></i></span>
-                            <div>
-                                <strong>Préstamos de títulos pactados entre comitentes:</strong> Préstamos bilaterales de cartera.
-                            </div>
-                        </li>
+                    
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-4">
+                        <h4 class="font-bold text-[#170045] mb-2 flex items-center gap-2">
+                            <i class="fas fa-coins text-[#3b008d]"></i> Valuación para el Límite
+                        </h4>
+                        <ul class="text-xs text-gray-600 space-y-1.5">
+                            <li>• <strong>Operaciones de Compra:</strong> Se considera el precio de compra concertado en la operación.</li>
+                            <li>• <strong>Ventas en USD, Transferencias y Conversiones:</strong> Se considera el precio en pesos del activo al <strong>día hábil anterior</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- APARTADO I: NORMATIVA VIGENTE -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-[#170045] border-b-2 border-[#00d897] pb-2">I. Normativa Vigente (Reglas Generales)</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Personas Humanas -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-[#3b008d] mb-3"><i class="fas fa-user mr-2"></i>Personas Humanas Residentes</h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex gap-2"><i class="fas fa-ban text-red-500 mt-1"></i> <div><strong>Com A 8332 y 8336 BCRA:</strong> Para compra de títulos contra USD, deben declarar no haber comprado dólar ahorro ni constituido depósitos en los últimos 90 días (desde el 26/09/2025).</div></li>
+                        <li class="flex gap-2"><i class="fas fa-ban text-red-500 mt-1"></i> <div><strong>RG 1018 CNV:</strong> No pueden mantener posiciones tomadoras de financiamiento en ARS para venta de títulos con liquidación en USD.</div></li>
+                        <li class="flex gap-2"><i class="fas fa-info-circle text-blue-500 mt-1"></i> <div><strong>Parking:</strong> NO les aplica parking.</div></li>
                     </ul>
                 </div>
 
-                <!-- NO es Financiamiento -->
-                <div class="bg-iolViolet-50 border border-iolViolet-200 rounded-xl p-5 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-2 text-iolViolet-900 font-extrabold text-sm mb-3">
-                            <i class="fas fa-handshake"></i>
-                            <h3>¿QUÉ NO SE CONSIDERA FINANCIAMIENTO?</h3>
-                        </div>
-                        <p class="text-xs text-slate-600 mb-3 leading-relaxed">
-                            Las siguientes emisiones y herramientas no limitan la operatoria cambiaria en bolsa bajo el alcance de la RG 1018:
-                        </p>
-                        <div class="space-y-3">
-                            <div class="bg-white p-3 rounded-lg border border-iolViolet-100">
-                                <span class="text-iolViolet-900 font-bold text-xs flex items-center gap-1.5">
-                                    <i class="fas fa-file-invoice-dollar"></i> Emisión de Obligaciones Negociables (ON) / VCP
-                                </span>
-                                <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
-                                    El financiamiento que obtiene el emisor de Obligaciones Negociables o Valores de Corto Plazo que posean la debida autorización de oferta pública de la CNV.
-                                </p>
-                            </div>
+                <!-- Cartera Propia -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-[#3b008d] mb-3"><i class="fas fa-building mr-2"></i>Cartera Propia de IOL</h3>
+                    <ul class="space-y-3 text-sm text-gray-600">
+                        <li class="flex gap-2"><i class="fas fa-ban text-red-500 mt-1"></i> <div>Restricción para realizar ventas en moneda extranjera teniendo posiciones tomadoras en cauciones, pases o cualquier financiamiento local (salvo Neteo o Recomposición PMEN).</div></li>
+                    </ul>
+                </div>
 
-                            <div class="bg-white p-3 rounded-lg border border-iolViolet-100">
-                                <span class="text-iolViolet-900 font-bold text-xs flex items-center gap-1.5">
-                                    <i class="fas fa-boxes"></i> Fideicomisos Financieros con Oferta Pública
-                                </span>
-                                <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
-                                    Financiamiento del emisor de títulos de deuda bajo fideicomisos financieros que cuenten con autorización de oferta pública emitida por CNV.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cartel Recordatorio Amigable -->
-                    <div class="mt-4 p-3.5 bg-iolViolet-dark text-white rounded-lg text-xs flex items-center gap-3 border border-iolViolet-500/20">
-                        <i class="fas fa-lightbulb text-iolTeal-neon text-lg shrink-0"></i>
-                        <p class="text-[11px] text-slate-300">
-                            <strong>Sugerencia de Cumplimiento:</strong> Se permite a las comitentes vender MEP/Cable con cauciones abiertas en la misma fecha de liquidación siempre y cuando se cierre la caución antes de la venta.
-                        </p>
+                <!-- PJ, CDI/CIE -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 md:col-span-2 hover:shadow-md transition-shadow">
+                    <h3 class="text-lg font-bold text-[#3b008d] mb-3"><i class="fas fa-users-cog mr-2"></i>Personas Jurídicas y Clientes con CDI/CIE / Intermediarios CUIT</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-600">
+                        <ul class="space-y-3">
+                            <li class="flex gap-2"><i class="fas fa-exchange-alt text-blue-500 mt-1"></i> <div><strong>Com. "A" 7340:</strong> Los fondos para comprar/vender títulos contra USD deben provenir/regresar a una cuenta bancaria propia del cliente.</div></li>
+                            <li class="flex gap-2"><i class="fas fa-clock text-orange-500 mt-1"></i> <div><strong>Parking (1 Día Hábil):</strong> Para venta de VN contra Cable/MEP; para transferir a depositarias del exterior VN adquiridos en ARS; o para aplicar VN externos a liquidaciones en moneda extranjera. (No aplica si se compró con USD).</div></li>
+                            <li class="flex gap-2"><i class="fas fa-ban text-red-500 mt-1"></i> <div><strong>RG 1018 CNV:</strong> Prohibido mantener posiciones tomadoras/financiamiento en pesos para ventas en USD.</div></li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex gap-2"><i class="fas fa-file-contract text-red-500 mt-1"></i> <div><strong>MULC:</strong> Si acceden al mercado de cambios, se comprometen por 90 días corridos a no realizar operaciones restringidas.</div></li>
+                            <li class="flex gap-2 bg-blue-50 p-2 rounded-lg border border-blue-100"><i class="fas fa-chart-bar text-blue-600 mt-1"></i> <div><strong>Límite $200.000.000 (Solo CDI/CIE e Intermediarios):</strong> Límite diario para operaciones restringidas. En regulados aplica por cuenta propia o por cada tercero.</div></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTIONS TABS -->
-        <div class="flex flex-wrap border-b border-slate-200 mb-6 gap-2 no-print">
-            <button onclick="switchTab('tab-vigente')" id="btn-tab-vigente" class="tab-btn px-5 py-3 font-semibold text-sm rounded-t-lg border-b-2 border-iolViolet-intense text-iolViolet-intense flex items-center gap-2 transition duration-150">
-                <i class="fas fa-shield-alt"></i> Apartado I: Normativa Vigente
-            </button>
-            <button onclick="switchTab('tab-excepciones')" id="btn-tab-excepciones" class="tab-btn px-5 py-3 font-semibold text-sm rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300 flex items-center gap-2 transition duration-150">
-                <i class="fas fa-gift"></i> Apartado II: Excepciones y Dispensas
-            </button>
-            <button onclick="switchTab('tab-controlantes')" id="btn-tab-controlantes" class="tab-btn px-5 py-3 font-semibold text-sm rounded-t-lg border-b-2 border-transparent text-slate-500 hover:text-slate-800 hover:border-slate-300 flex items-center gap-2 transition duration-150">
-                <i class="fas fa-users-cog"></i> Apartado III: Accionistas y Controlantes
-            </button>
-        </div>
-
-        <!-- ==================== TAB 1: NORMATIVA VIGENTE ==================== -->
-        <section id="tab-vigente" class="tab-content block space-y-6">
-            <div class="border-b border-slate-200 pb-2 flex flex-col md:flex-row md:items-center justify-between gap-2">
-                <div>
-                    <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                        <span class="bg-iolViolet-intense text-white rounded-lg px-2.5 py-1 text-sm font-extrabold">AP-1</span>
-                        Apartado I: Normativa Vigente
-                    </h2>
-                    <p class="text-slate-500 text-xs mt-0.5">Estructura de pautas operativas activas de acuerdo a cada tipo de cliente en el mercado de cambios y de capitales.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- 1) Clientes Personas Humanas Residentes -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between regulable-card">
-                    <div>
-                        <div class="bg-iolViolet-intense text-white px-4 py-3 flex items-center justify-between">
-                            <span class="text-xs uppercase font-extrabold tracking-wider">01. Personas Humanas Residentes</span>
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <div class="p-5 space-y-3.5">
-                            <h3 class="font-extrabold text-slate-950 text-sm">Condiciones de Acceso</h3>
-                            
-                            <div class="bg-iolViolet-50 border-l-4 border-iolViolet-500 p-3 rounded-r-lg">
-                                <strong class="text-xs text-iolViolet-950 block font-bold">Com. “A” 8332 y 8336 BCRA</strong>
-                                <p class="text-[11px] text-slate-700 mt-1 leading-relaxed">
-                                    Para concretar compras de títulos valores liquidados en moneda extranjera, se requiere una declaración de <strong>no haber accedido al mercado de cambios (MULC)</strong> para la compra de billetes (dólar ahorro) o constitución de depósitos en los <strong>últimos 90 días</strong> corridos (contados desde el 26/09/2025).
-                                </p>
-                            </div>
-
-                            <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg">
-                                <strong class="text-xs text-amber-950 block font-bold">RG 1018 CNV</strong>
-                                <p class="text-[11px] text-slate-700 mt-1 leading-relaxed">
-                                    <strong>Financiamiento en Moneda Local:</strong> Para proceder con la venta de títulos valores liquidados en dólares, el comitente no debe poseer financiamiento vigente en moneda local (descubiertos, cauciones, pases o similares).
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50 px-4 py-2.5 border-t border-slate-100 flex justify-between items-center text-[10px]">
-                        <span class="text-slate-500 font-semibold">Marco BCRA &amp; CNV</span>
-                        <span class="bg-iolViolet-100 text-iolViolet-900 font-bold px-2 py-0.5 rounded-full">Excepciones Disponibles</span>
-                    </div>
+        <!-- APARTADO II: EXCEPCIONES Y DISPENSAS -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-[#170045] border-b-2 border-[#00d897] pb-2">II. Excepciones y Dispensas</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Exc. Com A 7340 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-unlock text-green-500"></i> Excepciones a la Com. "A" 7340</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 list-disc pl-5">
+                        <li><strong>Personas Humanas Residentes:</strong> Ya NO les aplica.</li>
+                        <li><strong>Com. "A" 8042 (PJ y CDI/CIE):</strong> Exceptuado si se opera con dólares cobrados en los 15 días hábiles previos por amortización/intereses de emisores locales (neutro fiscal: Cable sí, MEP no). Asimismo, luego de una venta se permite utilizar los fondos para licitaciones primarias y la suscripción de Fondos Comunes de Inversión (FCI) en dólares.</li>
+                    </ul>
                 </div>
 
-                <!-- 2) Cartera Propia de IOL -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between regulable-card">
-                    <div>
-                        <div class="bg-iolViolet-dark text-white px-4 py-3 flex items-center justify-between">
-                            <span class="text-xs uppercase font-extrabold tracking-wider">02. Cartera Propia de IOL</span>
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div class="p-5 space-y-3.5">
-                            <p class="text-xs text-slate-600 leading-relaxed">
-                                Se dispone una pauta para que la cartera propia del agente no concrete ventas en moneda extranjera (local o exterior) en caso de mantener posiciones tomadoras en cauciones, pases o financiamientos en moneda local en el mercado de capitales, exceptuando:
-                            </p>
-                            
-                            <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg text-[11px] space-y-2">
-                                <p><strong>Neteo Diario (PMEN):</strong> Operaciones viables en la medida que el monto diario de la Posición en Moneda Extranjera Neta (PMEN) no genere saldo a favor.</p>
-                                <p><strong>Recomposición de PMEN al 01/06/2026:</strong> Para recomponer stocks con topes mensuales del 15% del PN Total y diarios de 3% del PN.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50 px-4 py-2.5 border-t border-slate-100 flex justify-between items-center text-[10px]">
-                        <span class="text-slate-500 font-semibold">Regulado para ALyC</span>
-                        <span class="bg-slate-200 text-slate-800 font-bold px-2 py-0.5 rounded-full">Esquema de Exceptuación</span>
-                    </div>
+                <!-- Exc. Com A 8417 y 8336 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-unlock text-green-500"></i> Excepciones Com. A 8417 y 8336</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 list-disc pl-5">
+                        <li><strong>Com A 8417:</strong> Si transfirió divisas al exterior (bloqueo 90 días), se exceptúa la compra primaria de deuda residente (manteniendo 15 días) y reinversión de cobros del Tesoro/BCRA (en los 15 días posteriores).</li>
+                        <li><strong>Com A 8361 (excepción a 8336):</strong> Compra permitida tras adquirir "dólar oficial" si es suscripción primaria de deuda (manteniendo 15 días, o sin plazo si fue hasta 09/12/2025 o si se vende en USD), o reinversión de servicios del Tesoro/BCRA (ej. BOPREAL) en 15 días.</li>
+                    </ul>
                 </div>
 
-                <!-- 3) Personas Jurídicas -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between regulable-card">
-                    <div>
-                        <div class="bg-indigo-900 text-white px-4 py-3 flex items-center justify-between">
-                            <span class="text-xs uppercase font-extrabold tracking-wider">03. Personas Jurídicas</span>
-                            <i class="fas fa-building"></i>
-                        </div>
-                        <div class="p-5 space-y-3.5">
-                            <div class="bg-iolViolet-50 border-l-4 border-iolViolet-500 p-3 rounded-r-lg">
-                                <strong class="text-xs text-iolViolet-950 block font-bold">Compromiso MULC: 90 Días</strong>
-                                <p class="text-[11px] text-slate-700 mt-1 leading-relaxed">
-                                    Si accede al mercado de cambios (MULC), asume el compromiso de no concertar operaciones restringidas de mercado de capitales en los 90 días corridos subsiguientes (y 90 días previos).
-                                </p>
-                            </div>
-
-                            <div class="space-y-2">
-                                <div class="bg-slate-50 p-2 rounded border border-slate-200 text-[11px]">
-                                    <strong>Com. "A" 7340 BCRA:</strong> Los fondos liquidados deben originarse y regresar a una cuenta bancaria de idéntica titularidad previo a operar compras y ventas contra dólares.
-                                </div>
-                                <div class="bg-amber-50/60 p-2 rounded border border-amber-200 text-[11px] font-medium text-amber-950">
-                                    <strong>RG 1018 CNV (Financiamiento):</strong> No se permiten mantener posiciones tomadoras activas en cauciones, pases o financiamiento local al momento de liquidar ventas en moneda extranjera.
-                                </div>
-                                <div class="bg-slate-50 p-2 rounded border border-slate-200 text-[11px]">
-                                    <strong>Parking de 1 día hábil:</strong> Aplica a ventas cambiarias en títulos comprados en pesos, transferencias al exterior y reingresos del exterior.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50 px-4 py-2.5 border-t border-slate-100 flex justify-between items-center text-[10px]">
-                        <span class="text-slate-500 font-semibold">Control de Operaciones Jurídicas</span>
-                        <span class="bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded-full">Filtro de Parking &amp; Cauciones</span>
-                    </div>
+                <!-- Exc. Límite de Volumen ($200M) -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-unlock text-green-500"></i> Excepciones Límite de Volumen ($200.000.000) para CDI/CIE</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 list-disc pl-5">
+                        <li>Transferencias al exterior de VN con amortización ≥ 2 años (licitación primaria), o Tesoro Nacional ≥ 180 días, o BOPREAL primario.</li>
+                        <li>Títulos mantenidos ≥ 365 días en subcuenta comitente.</li>
+                        <li>Conversión de Acciones/CEDEARs/ADRs.</li>
+                        <li>Intermediarios pagando dividendos como depositarios (aprobados por Asamblea).</li>
+                        <li>Ventas locales de BOPREAL (licitación primaria) y ventas provenientes de créditos hipotecarios UVA para compra de inmuebles.</li>
+                    </ul>
                 </div>
 
-                <!-- 4) Clientes con CDI/CIE y Clientes intermediarios con CUIT -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between regulable-card">
-                    <div>
-                        <div class="bg-teal-900 text-white px-4 py-3 flex items-center justify-between">
-                            <span class="text-xs uppercase font-extrabold tracking-wider">04. Clientes CDI/CIE &amp; Intermediarios</span>
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="p-5 space-y-3.5">
-                            <p class="text-xs text-slate-600 leading-relaxed">
-                                Al igual que a las PJ, les aplica el compromiso del MULC (90 días), la Com. "A" 7340, los límites de financiamiento ARS y el parking de 1 día. Adicionalmente, se disponen límites de volumen diario:
-                            </p>
-
-                            <div class="bg-teal-50 border border-teal-200 p-3 rounded-lg text-[11px]">
-                                <strong class="text-teal-950 block font-bold">Límite Diario de Volumen Operado:</strong>
-                                <p class="text-slate-700 leading-relaxed mt-1">
-                                    El volumen diario máximo operado no puede superar los <strong>$200.000.000</strong> en operaciones restringidas. Este límite aplica tanto a los clientes con CDI/CIE como a los intermediarios con CUIT de forma general. 
-                                </p>
-                                <p class="text-slate-700 leading-relaxed mt-1.5 font-semibold">
-                                    Para intermediarios o entidades del exterior reguladas, este límite rige de manera individual por cada cuenta de cliente local o por su cartera propia.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-slate-50 px-4 py-2.5 border-t border-slate-100 flex justify-between items-center text-[10px]">
-                        <span class="text-slate-500 font-semibold">Tope Operativo de Control</span>
-                        <span class="bg-teal-100 text-teal-800 font-bold px-2 py-0.5 rounded-full">Límite $200M Colectivo</span>
-                    </div>
+                <!-- Exc. Financiamiento y Parking -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-unlock text-green-500"></i> Excepciones de Financiamiento (RG 1018) y Parking</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 list-disc pl-5">
+                        <li><strong>Financiamiento en ARS (RG 1018):</strong> No aplica a ventas CCL por diferencia de BOPREAL (primario) ni a ventas con fondos de créditos UVA para inmuebles.</li>
+                        <li><strong>Parking (PJ y CDI/CIE):</strong> No aplica para ventas con fondos UVA (para inmuebles), transferencias al exterior provenientes de licitación primaria del Tesoro/BOPREAL, acciones/CEDEARs, ni operaciones reguladas bajo 3.16.3.6.v y 4.7.2.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== TAB 2: EXCEPCIONES Y DISPENSAS ==================== -->
-        <section id="tab-excepciones" class="tab-content hidden space-y-6">
-            <div class="border-b border-slate-200 pb-2">
-                <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                    <span class="bg-iolTeal-500 text-white rounded-lg px-2.5 py-1 text-sm font-extrabold">AP-2</span>
-                    Apartado II: Excepciones y Dispensas Regulatorias
-                </h2>
-                <p class="text-slate-500 text-xs mt-0.5">Beneficios y flexibilizaciones contemplados para la operatoria de títulos y canales bursátiles.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Excepciones Com. "A" 7340 -->
-                <div class="bg-white rounded-xl shadow-sm border border-teal-100 overflow-hidden flex flex-col justify-between border-t-4 border-t-iolTeal-500 regulable-card">
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] uppercase font-extrabold text-iolTeal-600 bg-iolTeal-50 px-2.5 py-0.5 rounded-full">BCRA Excepciones</span>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Comun. "A" 7340: Retorno de Fondos</h3>
-                        
-                        <div class="space-y-2 text-[11px] text-slate-700">
-                            <div class="bg-iolViolet-50 p-2.5 rounded">
-                                <strong>Personas Humanas Residentes:</strong> <br>
-                                <span class="text-iolViolet-950 font-semibold">Exento:</span> Ya no se requiere canalizar de forma forzosa los fondos por cuentas bancarias previas.
-                            </div>
-                            <div class="bg-slate-50 p-2.5 rounded leading-relaxed">
-                                <strong>Personas Jurídicas / CDI / CIE / CUIT (Com. "A" 8042):</strong> <br>
-                                Exceptuados en compras de títulos con dólares recibidos en los <strong>15 días hábiles previos</strong> por el cobro de capital/intereses de deudas locales, siempre que la reinversión sea impositivamente neutra (Cable sí, MEP no). Asimismo, se permite utilizar fondos provenientes o derivados de licitaciones primarias y de suscripciones/rescates de Fondos Comunes de Inversión (FCI) en dólares.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Excepciones Financiamiento en Pesos -->
-                <div class="bg-white rounded-xl shadow-sm border border-teal-100 overflow-hidden flex flex-col justify-between border-t-4 border-t-iolTeal-500 regulable-card">
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] uppercase font-extrabold text-iolTeal-600 bg-iolTeal-50 px-2.5 py-0.5 rounded-full">Dispensa de Financiamiento</span>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Dispensas para Financiamiento en ARS</h3>
-                        
-                        <div class="space-y-2 text-[11px] text-slate-700">
-                            <div class="bg-iolViolet-50 p-2.5 rounded leading-relaxed">
-                                <strong>Operaciones de BOPREAL:</strong> <br>
-                                No aplica la limitación de mantener caución tomadora en ARS al operar BOPREAL originados de licitación primaria, admitiendo ventas contra Cable por diferencias del instrumento.
-                            </div>
-                            <div class="bg-slate-50 p-2.5 rounded leading-relaxed">
-                                <strong>Préstamos Hipotecarios UVA:</strong> <br>
-                                No aplica restricción para ventas en moneda extranjera si provienen de activos adquiridos en pesos mediante créditos UVA aplicados a la adquisición de vivienda local.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Excepciones de Parking -->
-                <div class="bg-white rounded-xl shadow-sm border border-teal-100 overflow-hidden flex flex-col justify-between border-t-4 border-t-iolTeal-500 regulable-card">
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] uppercase font-extrabold text-iolTeal-600 bg-iolTeal-50 px-2.5 py-0.5 rounded-full">Plazos de Permanencia</span>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Excepciones de Parking</h3>
-                        
-                        <div class="space-y-2 text-[11px] text-slate-700">
-                            <div class="bg-iolViolet-50 p-2.5 rounded">
-                                <strong>Personas Humanas Residentes:</strong> <br>
-                                <span class="text-iolViolet-950 font-bold">Sin Parking:</span> No disponen de plazos mínimos de permanencia para operar.
-                            </div>
-                            <div class="bg-slate-50 p-2.5 rounded leading-relaxed">
-                                <strong>Para PJ / CDI / CIE / CUIT:</strong> Exentos de parking en:
-                                <ul class="list-disc pl-4 mt-1 space-y-1">
-                                    <li>Ventas con fondos de créditos UVA para vivienda.</li>
-                                    <li>Giros al exterior de BOPREAL o de Tesoro de licitación primaria.</li>
-                                    <li>Traspasos de acciones o CEDEARs en mercados locales regulados.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Excepciones Límite de Volumen Diario ($200M) -->
-                <div class="bg-white rounded-xl shadow-sm border border-teal-100 overflow-hidden flex flex-col justify-between border-t-4 border-t-iolTeal-500 regulable-card">
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] uppercase font-extrabold text-iolTeal-600 bg-iolTeal-50 px-2.5 py-0.5 rounded-full">Topes de Operación</span>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Dispensas al Límite de $200M Diario</h3>
-                        
-                        <div class="space-y-2 text-[11px] text-slate-700 max-h-60 overflow-y-auto custom-scrollbar pr-1">
-                            <div class="bg-slate-50 p-2 rounded leading-relaxed">
-                                <strong>Giros al Exterior (CIE/CDI):</strong> Valores en licitación primaria con amortización &ge; 2 años, emisiones de Tesoro Nacional &ge; 180 días primarias, BOPREAL primarios o tenencias &ge; 365 días corridos.
-                            </div>
-                            <div class="bg-slate-50 p-2 rounded leading-relaxed">
-                                <strong>Pago de Dividendos:</strong> Operaciones de intermediarios que pagan dividendos de GDS/ADR/ADS con debida asamblea y listado.
-                            </div>
-                            <div class="bg-slate-50 p-2 rounded leading-relaxed">
-                                <strong>Ventas de BOPREAL / UVA:</strong> BOPREAL primarios en el país o ventas con financiamiento UVA de inmuebles locales.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Excepción Com. "A" 8417 -->
-                <div class="bg-white rounded-xl shadow-sm border border-teal-100 overflow-hidden flex flex-col justify-between border-t-4 border-t-iolTeal-500 regulable-card">
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] uppercase font-extrabold text-iolTeal-600 bg-iolTeal-50 px-2.5 py-0.5 rounded-full">Com. "A" 8417</span>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Reinversiones y Suscripciones</h3>
-                        
-                        <div class="space-y-2 text-[11px] text-slate-700">
-                            <p class="text-[11px] text-slate-600 leading-relaxed">
-                                Aunque las transferencias de divisas al exterior activan una exclusión temporal de 90 días para comprar títulos en USD, se admiten las siguientes dispensas:
-                            </p>
-                            <div class="bg-iolViolet-50 p-2 rounded leading-relaxed">
-                                <strong>Suscripción Primaria:</strong> Compra de deuda de emisores locales en colocaciones primarias con mantenimiento de cartera &ge; 15 días hábiles.
-                            </div>
-                            <div class="bg-iolViolet-50 p-2 rounded leading-relaxed">
-                                <strong>Reinversión de Cobros:</strong> Capital o intereses del Tesoro o BCRA si se reinvierten en los 15 días hábiles posteriores al cobro.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Excepción Com. "A" 8336 & 8361 -->
-                <div class="bg-white rounded-xl shadow-sm border border-teal-100 overflow-hidden flex flex-col justify-between border-t-4 border-t-iolTeal-500 regulable-card">
-                    <div class="p-5 space-y-3">
-                        <span class="text-[10px] uppercase font-extrabold text-iolTeal-600 bg-iolTeal-50 px-2.5 py-0.5 rounded-full">Com. "A" 8336 / 8361</span>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Adquisición de Dólar Oficial</h3>
-                        
-                        <div class="space-y-2 text-[11px] text-slate-700">
-                            <p class="text-[11px] text-slate-600 leading-relaxed">
-                                Posibilita la compra de títulos en moneda extranjera a personas humanas que adquirieron previamente dólar oficial, bajo los siguientes alcances:
-                            </p>
-                            <div class="bg-iolViolet-50 p-2.5 rounded leading-relaxed">
-                                <strong>Suscripción Primaria Corporativa:</strong> Manteniendo los títulos &ge; 15 días hábiles en cartera. El plazo no rige si se suscribieron hasta el 09/12/2025 inclusive o si la venta posterior se liquida contra USD.
-                            </div>
-                            <div class="bg-iolViolet-50 p-2.5 rounded leading-relaxed">
-                                <strong>Reinversión de Amortizaciones:</strong> Cobros por servicios del Tesoro Nacional o BCRA (ej. BOPREAL) reinvertidos dentro de los 15 días hábiles posteriores.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- APARTADO III: ACCIONISTAS Y CONTROLANTES -->
+        <section class="bg-red-50 rounded-2xl shadow-sm border border-red-200 p-6 md:p-8">
+            <h2 class="text-xl font-bold text-red-800 mb-4 flex items-center gap-2">
+                <i class="fas fa-exclamation-circle"></i> III. Controlantes Directos y Accionistas Especiales
+            </h2>
+            <p class="text-sm text-red-700 mb-4">
+                <strong>Atención:</strong> Para quienes acceden al mercado de cambios (MULC), están limitados para realizar las siguientes 7 operaciones. Quienes sean <strong>accionistas con 25% de votos o más</strong> deberían, por prudencia, evitar estas mismas operaciones (especialmente ante distribución de dividendos):
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
+                <ul class="space-y-2 list-none">
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> i) No concertar ventas en el país de títulos con liquidación en moneda extranjera.</li>
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> ii) No realizar canjes de títulos emitidos por residentes por activos externos.</li>
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> iii) No transferir títulos a entidades depositarias del exterior.</li>
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> iv) No adquirir en el país títulos de no residentes con liquidación en pesos.</li>
+                </ul>
+                <ul class="space-y-2 list-none">
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> v) No adquirir CEDEARs.</li>
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> vi) No adquirir títulos de deuda privada extranjera.</li>
+                    <li><i class="fas fa-times text-red-500 mr-2"></i> vii) No entregar fondos/activos locales para recibir contraprestación en activos externos, criptos o títulos en el exterior.</li>
+                </ul>
             </div>
         </section>
-
-        <!-- ==================== TAB 3: ACCIONISTAS Y CONTROLANTES ==================== -->
-        <section id="tab-controlantes" class="tab-content hidden space-y-6">
-            <div class="border-b border-slate-200 pb-2">
-                <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
-                    <span class="bg-iolViolet-intense text-white rounded-lg px-2.5 py-1 text-sm font-extrabold">AP-3</span>
-                    Apartado III: Controlantes Directos y Accionistas Especiales
-                </h2>
-                <p class="text-slate-500 text-xs mt-0.5">Lineamientos prudenciales y compromisos sugeridos para accionistas vinculados al acceso de divisas (MULC).</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Tarjeta Principal de las 7 Operaciones del MULC -->
-                <div class="lg:col-span-8 bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden regulable-card">
-                    <div class="bg-iolViolet-dark text-white p-5 flex items-center justify-between">
-                        <div>
-                            <span class="text-xs uppercase font-extrabold bg-iolViolet-900 px-2.5 py-1 rounded-full text-iolTeal-neon">Lineamiento por Acceso al MULC</span>
-                            <h3 class="text-lg font-black mt-1">Las 7 Operaciones de Control en Mercado de Capitales</h3>
-                        </div>
-                        <i class="fas fa-handshake-slash text-3xl text-iolTeal-neon"></i>
-                    </div>
-
-                    <div class="p-6">
-                        <p class="text-xs text-slate-500 mb-4 font-semibold leading-relaxed">
-                            El ingreso del cliente al Mercado Único de Cambios conlleva el compromiso de abstenerse de realizar las siguientes operaciones bursátiles:
-                        </p>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                <span class="bg-iolViolet-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shrink-0">1</span>
-                                <span class="text-[11px] text-slate-700 leading-relaxed">Ventas en el país de títulos valores con liquidación en moneda extranjera.</span>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                <span class="bg-iolViolet-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shrink-0">2</span>
-                                <span class="text-[11px] text-slate-700 leading-relaxed">Canjes de títulos valores emitidos por residentes por activos externos.</span>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                <span class="bg-iolViolet-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shrink-0">3</span>
-                                <span class="text-[11px] text-slate-700 leading-relaxed">Transferencias de títulos valores a depositarias externas o del exterior.</span>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                <span class="bg-iolViolet-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shrink-0">4</span>
-                                <span class="text-[11px] text-slate-700 leading-relaxed">Adquisición en el país de títulos emitidos por no residentes con liquidación en pesos.</span>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                <span class="bg-iolViolet-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shrink-0">5</span>
-                                <span class="text-[11px] text-slate-700 leading-relaxed">Adquisición de Certificados de Depósito Representativos de Acciones Extranjeras (CEDEAR).</span>
-                            </div>
-                            <div class="flex items-start space-x-3 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                <span class="bg-iolViolet-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shrink-0">6</span>
-                                <span class="text-[11px] text-slate-700 leading-relaxed">Adquisición de títulos representativos de deuda privada emitida bajo ley extranjera.</span>
-                            </div>
-                        </div>
-
-                        <!-- Detalle Pauta de Transferencia Indirecta (vii) -->
-                        <div class="mt-4 p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs leading-relaxed text-slate-700">
-                            <span class="font-extrabold text-iolViolet-900 flex items-center gap-1.5"><i class="fas fa-exclamation-circle text-iolViolet-intense"></i> Criterio de Transferencia de Fondos Indirecta (vii)</span>
-                            <p class="mt-1 text-[11px] text-slate-600">
-                                Se sugiere evitar la entrega de fondos en moneda local u otros activos locales (salvo divisas en entidades locales) a personas humanas o jurídicas, vinculadas o no, recibiendo como contraprestación posterior o previa, de forma directa o indirecta, por sí o a través de controlantes/controladas, activos externos, criptoactivos o títulos en el exterior.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Criterio de Prudencia para Accionistas (25%) -->
-                <div class="lg:col-span-4 bg-iolViolet-50 rounded-xl shadow-sm border border-iolViolet-200 p-6 flex flex-col justify-between regulable-card">
-                    <div class="space-y-4">
-                        <div class="text-iolViolet-900 text-lg font-black flex items-center gap-2">
-                            <i class="fas fa-shield-halved text-2xl text-iolViolet-intense"></i> Criterio de Prudencia
-                        </div>
-                        <h4 class="text-sm font-extrabold text-slate-900">Accionistas con el 25% de votos o más</h4>
-                        <p class="text-xs text-slate-600 leading-relaxed font-medium">
-                            Por un principio de prudencia regulatoria y para salvaguardar el acceso al mercado de cambios de la sociedad controlada, los accionistas que posean de forma directa o indirecta el <strong>25% de votos o más</strong> deberían abstenerse de realizar estas mismas 7 operaciones del mercado de capitales.
-                        </p>
-                        <div class="p-3 bg-white rounded border border-iolViolet-200 text-xs text-slate-700 leading-relaxed">
-                            <strong class="text-iolViolet-950 block mb-1"><i class="fas fa-coins text-amber-600 mr-1"></i> Consideración en Dividendos</strong>
-                            Esta sugerencia de control adquiere relevancia ante esquemas recientes de <span class="font-semibold underline">distribución de dividendos</span> por parte de la controlada a sus accionistas mayoritarios.
-                        </div>
-                    </div>
-                    
-                    <div class="border-t border-iolViolet-200 pt-4 mt-6 text-center text-[10px] uppercase font-bold text-iolViolet-700 tracking-wider">
-                        Sugerencia de Cumplimiento IOL
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== BASE DOCUMENTAL DE REFERENCIA ==================== -->
-        <section class="mt-8 border-t border-slate-200 pt-6 no-print">
-            <div class="bg-slate-100 p-4 rounded-lg flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-slate-500 border border-slate-200">
-                <div class="flex items-center gap-2.5">
-                    <i class="fas fa-file-contract text-slate-400 text-base"></i>
-                    <p class="text-[11px] leading-relaxed">
-                        <strong>Referencia Normativa:</strong> Guía interpretativa y adaptada según el documento de consulta interna 
-                        <strong class="text-slate-700">"Actualizacion 07.2026 [TCA].docx"</strong> y <strong class="text-slate-700">"Actualizacion 07.2026 [TCA]_2.docx"</strong>.
-                    </p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="px-2.5 py-1 bg-slate-200 text-slate-700 text-[10px] font-bold rounded">Edición 07.2026</span>
-                    <button onclick="window.print()" class="text-[10px] bg-white hover:bg-slate-50 text-slate-700 font-semibold py-1 px-2.5 border border-slate-300 rounded shadow-sm transition flex items-center gap-1">
-                        <i class="fas fa-print"></i> Imprimir Reporte
-                    </button>
-                </div>
-            </div>
-        </section>
+        
+        <footer class="text-center text-xs text-gray-400 mt-8">
+            Base Documental: <i>Actualizacion 07.2026 [TCA].docx</i> y <i>Actualizacion 07.2026 [TCA]_2.docx</i>
+        </footer>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-400 no-print mt-12">
-        <p class="font-semibold text-slate-500">© 2026 InvertirOnline (IOL) - Área de Cumplimiento Regulatorio y Prevención de Lavado.</p>
-        <p class="mt-1 text-[10px]">Este mapa interactivo tiene como finalidad exclusiva el soporte de asesoramiento interno para el análisis preventivo de operaciones.</p>
-    </footer>
-
-    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
     <script>
-        // Tab Switcher
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.add('hidden');
-                tab.classList.remove('block');
-            });
-            const activeTab = document.getElementById(tabId);
-            if (activeTab) {
-                activeTab.classList.remove('hidden');
-                activeTab.classList.add('block');
+        // Lógica del Asistente 
+        const rulebook = {
+            "ph_residente": {
+                "compra_usd": {
+                    title: "Compra de títulos valores con liquidación en Moneda Extranjera",
+                    icon: '<div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600"><i class="fas fa-shopping-cart"></i></div>',
+                    canDo: [
+                        "Se permite la compra de títulos valores en moneda extranjera cumpliendo las DDJJ vigentes."
+                    ],
+                    restrictions: [
+                        "<strong>Com. 'A' 8332/8336 BCRA:</strong> Debe declarar NO haber accedido al mercado de cambios para comprar dólar ahorro ni constituir depósitos en los últimos 90 días (desde 26/09/2025).",
+                        "<strong>Com. 'A' 8417:</strong> Si transfirió divisas al exterior, no puede comprar títulos en USD por 90 días (ver excepciones)."
+                    ],
+                    exceptions: [
+                        "<strong>Com. 'A' 8361:</strong> Permite compra post dólar oficial si es suscripción primaria de deuda residente (mantener 15 días) o reinversión de cobros del Tesoro/BCRA.",
+                        "<strong>Com. 'A' 8417:</strong> Excepciones para suscripciones primarias (15 días holding) y reinversión de cobros Tesoro/BCRA (dentro de 15 días hábiles)."
+                    ]
+                },
+                "venta_usd": {
+                    title: "Venta de títulos valores con liquidación en Moneda Extranjera",
+                    icon: '<div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600"><i class="fas fa-hand-holding-usd"></i></div>',
+                    canDo: [
+                        "Se pueden realizar operaciones de venta contra Cable/MEP sin requerir parking."
+                    ],
+                    restrictions: [
+                        "<strong>RG 1018 CNV:</strong> Prohibido mantener posiciones tomadoras en cauciones, pases o financiamiento local en ARS en el momento de la venta (La caución debe cerrarse antes de la venta en el mismo día)."
+                    ],
+                    exceptions: [
+                        "<strong>BOPREAL (Primario):</strong> Ventas contra cable (CCL por diferencia de BOPREAL) exceptuadas de la RG 1018.",
+                        "<strong>Créditos UVA:</strong> Ventas en USD de activos adquiridos con fondos UVA para compra de inmuebles están exceptuadas de la RG 1018."
+                    ]
+                }
+            },
+            "persona_juridica": {
+                "com_7340": {
+                    title: "Operaciones de Compra/Venta contra Moneda Extranjera (Flujo de Fondos)",
+                    icon: '<div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600"><i class="fas fa-exchange-alt"></i></div>',
+                    canDo: [
+                        "Operaciones permitidas canalizando el flujo a través de cuentas bancarias."
+                    ],
+                    restrictions: [
+                        "<strong>Com. 'A' 7340:</strong> Los fondos para comprar o el producido de la venta deben provenir y regresar obligatoriamente a una cuenta bancaria propia del cliente antes de una nueva operación."
+                    ],
+                    exceptions: [
+                        "<strong>Com. 'A' 8042:</strong> Exceptuado si se opera con dólares cobrados en los 15 días hábiles previos por amortización/intereses de emisores locales (neutro fiscal: Cable sí, MEP no). Asimismo, luego de una venta se permite utilizar los fondos para licitaciones primarias y la suscripción de Fondos Comunes de Inversión (FCI) en dólares."
+                    ]
+                },
+                "mulc_90": {
+                    title: "Acceso al MULC (Mercado de Cambios)",
+                    icon: '<div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600"><i class="fas fa-file-contract"></i></div>',
+                    canDo: [
+                        "Acceso permitido previa DDJJ de cumplimiento normativo."
+                    ],
+                    restrictions: [
+                        "<strong>Bloqueo 90 días:</strong> Al acceder al MULC, el cliente se compromete por 90 días previos y 90 días posteriores a NO realizar operaciones restringidas (Venta contra Cable/MEP, transferencias al exterior, canjes externos, CEDEARs, etc.)."
+                    ],
+                    exceptions: []
+                },
+                "venta_usd": {
+                    title: "Venta de títulos valores con liquidación en Moneda Extranjera y Transferencias",
+                    icon: '<div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600"><i class="fas fa-share-square"></i></div>',
+                    canDo: [
+                        "Ventas MEP/Cable y transferencias permitidas cumpliendo plazos y regulaciones de financiamiento."
+                    ],
+                    restrictions: [
+                        "<strong>RG 1018 CNV:</strong> Prohibido mantener posiciones tomadoras en cauciones/financiamiento local (La caución debe cerrarse antes de la venta).",
+                        "<strong>Parking (1 Día Hábil):</strong> Aplica para ventas VN contra moneda extranjera (si se compró en ARS), transferencias al exterior, o liquidaciones con VN de depositarias del exterior."
+                    ],
+                    exceptions: [
+                        "<strong>Parking y RG 1018:</strong> Ventas de activos adquiridos con fondos UVA (para compra de inmuebles).",
+                        "<strong>Parking Transferencias:</strong> Colocación primaria de BOPREAL o Tesoro Nacional, y acciones/CEDEARs."
+                    ]
+                }
+            },
+            "cdi_cie": {
+                "com_7340": {
+                    title: "Operaciones de Compra/Venta contra Moneda Extranjera (Flujo de Fondos)",
+                    icon: '<div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600"><i class="fas fa-exchange-alt"></i></div>',
+                    canDo: [
+                        "Operaciones permitidas canalizando el flujo a través de cuentas bancarias."
+                    ],
+                    restrictions: [
+                        "<strong>Com. 'A' 7340:</strong> Los fondos para comprar o el producido de la venta deben provenir y regresar obligatoriamente a una cuenta bancaria propia del cliente."
+                    ],
+                    exceptions: [
+                        "<strong>Com. 'A' 8042:</strong> Exceptuado si se opera con dólares cobrados en los 15 días hábiles previos por amortización/intereses de emisores locales (neutro fiscal: Cable sí, MEP no). Asimismo, luego de una venta se permite utilizar los fondos para licitaciones primarias y la suscripción de Fondos Comunes de Inversión (FCI) en dólares."
+                    ]
+                },
+                "mulc_90": {
+                    title: "Acceso al MULC (Mercado de Cambios)",
+                    icon: '<div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center text-red-600"><i class="fas fa-file-contract"></i></div>',
+                    canDo: [
+                        "Acceso permitido previa DDJJ de cumplimiento normativo."
+                    ],
+                    restrictions: [
+                        "<strong>Bloqueo 90 días:</strong> Al acceder al MULC, el cliente se compromete por 90 días previos y 90 días posteriores a NO realizar operaciones restringidas."
+                    ],
+                    exceptions: []
+                },
+                "venta_usd": {
+                    title: "Ventas y Transferencias Extranjeras (Volumen y Parking)",
+                    icon: '<div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600"><i class="fas fa-tachometer-alt"></i></div>',
+                    canDo: [
+                        "Ventas MEP/Cable y transferencias permitidas bajo estricto control de volumen diario y parking."
+                    ],
+                    restrictions: [
+                        "<strong>Límite Diario $200.000.000:</strong> Aplica a CDI/CIE e Intermediarios Regulados (por subcuenta y conjunto de subcuentas) para operaciones restringidas (3.16.3.1 y 3.16.3.2).",
+                        "<strong>RG 1018 CNV:</strong> Prohibido mantener financiamiento/cauciones en pesos al momento de la venta.",
+                        "<strong>Parking (1 Día Hábil):</strong> Para ventas contra MEP/Cable de títulos adquiridos en pesos, y transferencias externas."
+                    ],
+                    exceptions: [
+                        "<strong>Límite de $200M:</strong> No aplica para transferencias de VN ≥ 2 años (licitación primaria), Tesoro ≥ 180 días, BOPREAL primario, tenencias ≥ 365 días, conversión ADRs/CEDEARs, ni pago de dividendos.",
+                        "<strong>Parking y RG 1018:</strong> Ventas de activos adquiridos con fondos UVA (para compra de inmuebles) y operaciones con BOPREAL primario."
+                    ]
+                }
+            },
+            "cartera_propia": {
+                "venta_usd": {
+                    title: "Ventas en Moneda Extranjera (Cartera Propia)",
+                    icon: '<div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-700"><i class="fas fa-briefcase"></i></div>',
+                    canDo: [
+                        "La ALyC/AN puede operar libremente en su gestión habitual siempre y cuando NO cuente con financiamiento local abierto (o encuadre en las excepciones reguladas)."
+                    ],
+                    restrictions: [
+                        "<strong>Restricción Principal:</strong> IOL posee restricción para realizar ventas en moneda extranjera para cartera propia (Cable/MEP o exterior) si mantiene posiciones tomadoras en cauciones, pases o cualquier financiamiento en moneda local."
+                    ],
+                    exceptions: [
+                        "<strong>Neteo Diario:</strong> Permitido si la Posición en Moneda Extranjera Neta (PMEN) diaria no genera saldo a favor a partir de dichas ventas (netas de compras).",
+                        "<strong>Recomposición PMEN al 01/06/26:</strong> Permitido para recuperar la posición histórica con límites: máx. 15% del PN Total mensual y máx. 3% del PN por día hábil (excluye VN Cortos < 1 año)."
+                    ]
+                }
             }
+        };
 
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('text-iolViolet-intense', 'border-iolViolet-intense');
-                btn.classList.add('text-slate-500', 'border-transparent');
-            });
-            const activeBtn = document.getElementById('btn-' + tabId);
-            if (activeBtn) {
-                activeBtn.classList.add('text-iolViolet-intense', 'border-iolViolet-intense');
-                activeBtn.classList.remove('text-slate-500', 'border-transparent');
-            }
-        }
+        const clientSelect = document.getElementById('clientType');
+        const operationSelect = document.getElementById('operationType');
+        const wizardResult = document.getElementById('wizardResult');
 
-        // Data mapping for wizard options
-        const operationsMap = {
-            humana: [
-                { value: "compra_usd", label: "Compra de Títulos en USD (MEP/Cable)" },
-                { value: "venta_usd", label: "Venta de Títulos contra USD (MEP/Cable)" },
-                { value: "caucion", label: "Tomar financiamiento / cauciones en Pesos" },
-                { value: "transferencia_ext", label: "Hacer transferencias al exterior" }
+        const optionsMap = {
+            "ph_residente": [
+                {val: "compra_usd", text: "Comprar títulos contra moneda extranjera"},
+                {val: "venta_usd", text: "Vender títulos contra moneda extranjera"}
             ],
-            cartera: [
-                { value: "venta_usd", label: "Venta contra moneda extranjera (MEP/Cable)" },
-                { value: "neteo", label: "Operar bajo Neteo Diario (PMEN)" },
-                { value: "recomposicion", label: "Recomposición de PMEN al 01/06/2026" }
+            "persona_juridica": [
+                {val: "com_7340", text: "Compra/Venta contra USD (Com A 7340)"},
+                {val: "mulc_90", text: "Acceso al MULC (Mercado de Cambios)"},
+                {val: "venta_usd", text: "Venta de títulos contra USD y Transferencias"}
             ],
-            juridica: [
-                { value: "mulc_90", label: "Acceso al MULC (Compromiso 90 días)" },
-                { value: "com_7340", label: "Comprar/Vender títulos contra USD (Com. A 7340)" },
-                { value: "venta_usd", label: "Venta contra moneda extranjera (MEP/Cable)" }
+            "cdi_cie": [
+                {val: "com_7340", text: "Compra/Venta contra USD (Com A 7340)"},
+                {val: "mulc_90", text: "Acceso al MULC (Mercado de Cambios)"},
+                {val: "venta_usd", text: "Venta de títulos contra USD y Transferencias"}
             ],
-            cdi_cie: [
-                { value: "mulc_90", label: "Acceso al MULC (Compromiso 90 días)" },
-                { value: "com_7340", label: "Comprar/Vender títulos contra USD (Com. A 7340)" },
-                { value: "venta_usd", label: "Venta contra moneda extranjera (MEP/Cable)" },
-                { value: "limite_monto", label: "Operaciones locales con volumen diario ($200M)" }
-            ],
-            controlante: [
-                { value: "operaciones_bolsa", label: "Participar en operaciones cambiarias bursátiles" },
-                { value: "distribucion_div", label: "La empresa distribuyó dividendos recientemente" }
+            "cartera_propia": [
+                {val: "venta_usd", text: "Ventas de cartera contra moneda extranjera"}
             ]
         };
 
         function populateOperations() {
-            const profile = document.getElementById('wizardProfile').value;
-            const actionSelect = document.getElementById('wizardAction');
-            actionSelect.innerHTML = '';
-
-            const ops = operationsMap[profile] || [];
-            ops.forEach(op => {
-                const opt = document.createElement('option');
-                opt.value = op.value;
-                opt.textContent = op.label;
-                actionSelect.appendChild(opt);
-            });
-
-            runWizard();
-        }
-
-        // Interactive Wizard Business Logic (Can Do, Restrictions, Exceptions)
-        function runWizard() {
-            const profile = document.getElementById('wizardProfile').value;
-            const action = document.getElementById('wizardAction').value;
+            const client = clientSelect.value;
+            operationSelect.innerHTML = '<option value="">-- Seleccione una operación --</option>';
+            wizardResult.classList.add('hidden');
             
-            const badge = document.getElementById('wizardResultBadge');
-            const canDoBox = document.getElementById('wizardCanDo');
-            const restrictionsBox = document.getElementById('wizardRestrictions');
-            const exceptionsBox = document.getElementById('wizardExceptions');
-
-            // Reset classes
-            badge.className = "inline-flex items-center w-fit px-3 py-1 rounded-full text-xs font-bold ";
-
-            if (profile === 'humana') {
-                if (action === 'compra_usd') {
-                    badge.classList.add('bg-iolViolet-500/20', 'text-iolViolet-200', 'border', 'border-iolViolet-500/30');
-                    badge.innerHTML = '<i class="fas fa-info-circle mr-1"></i> Consulta de Compra';
-                    
-                    canDoBox.innerHTML = "Se permite la adquisición de títulos con liquidación en moneda extranjera.";
-                    restrictionsBox.innerHTML = "Declarar no haber accedido al MULC para adquirir billetes o constituir depósitos en los últimos 90 días corridos (Com. \"A\" 8332/8336).";
-                    exceptionsBox.innerHTML = "Com. \"A\" 8361: Permite comprar si se destina a suscripción primaria de títulos locales (mínimo 15 días en cartera, excepto si fue hasta el 09/12/2025 o venta es contra USD), o reinversión de cobros del Tesoro en 15 días hábiles.";
-                } 
-                else if (action === 'venta_usd') {
-                    badge.classList.add('bg-iolTeal-500/20', 'text-iolTeal-neon', 'border', 'border-iolTeal-500/30');
-                    badge.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Operatoria Viable';
-                    
-                    canDoBox.innerHTML = "Se admite cursar ventas de títulos valores contra dólar MEP o Cable de forma directa.";
-                    restrictionsBox.innerHTML = "No mantener saldos deudores ni cauciones tomadoras activas en pesos bajo la RG 1018 CNV.";
-                    exceptionsBox.innerHTML = "Exento de parking para personas humanas residentes. El control de cauciones no rige para operaciones de BOPREAL primario o si los fondos provienen de créditos UVA para vivienda.";
-                } 
-                else if (action === 'caucion') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-exclamation-triangle mr-1"></i> Pauta de Control (RG 1018)';
-                    
-                    canDoBox.innerHTML = "Tomar financiamiento local (cauciones/pases) para concretar operaciones generales en pesos.";
-                    restrictionsBox.innerHTML = "El comitente debe abstenerse de mantener este financiamiento vigente si de manera simultánea concreta ventas de títulos en moneda extranjera.";
-                    exceptionsBox.innerHTML = "Exceptuado cuando se traten de BOPREAL primarios acompañados de ventas de cable por diferencias del instrumento, o fondos de créditos hipotecarios UVA para inmuebles.";
-                } 
-                else if (action === 'transferencia_ext') {
-                    badge.classList.add('bg-iolTeal-500/20', 'text-iolTeal-neon', 'border', 'border-iolTeal-500/30');
-                    badge.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Operatoria Viable';
-                    
-                    canDoBox.innerHTML = "Se admite girar títulos valores a cuentas de igual titularidad en custodias del exterior.";
-                    restrictionsBox.innerHTML = "Cumplir con las declaraciones correspondientes de origen de fondos ante el ALyC.";
-                    exceptionsBox.innerHTML = "Sin parking de permanencia mínimo de activos para personas humanas residentes.";
-                }
-            }
-
-            else if (profile === 'cartera') {
-                if (action === 'venta_usd') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-info-circle mr-1"></i> Pauta General ALyC';
-                    
-                    canDoBox.innerHTML = "Las carteras de agentes (ALyC / AN) pueden realizar operaciones habituales con títulos valores en el marco de la normativa aplicable a cartera propia.";
-                    restrictionsBox.innerHTML = "Se dispone la abstención de realizar ventas contra divisas si se poseen posiciones tomadoras activas en cauciones o pases.";
-                    exceptionsBox.innerHTML = "Vías exceptuadas: operar bajo el régimen de Neteo Diario o bien Recomposición PMEN al 01/06/2026.";
-                } 
-                else if (action === 'neteo') {
-                    badge.classList.add('bg-iolTeal-500/20', 'text-iolTeal-neon', 'border', 'border-iolTeal-500/30');
-                    badge.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Operatoria Bajo Neteo';
-                    
-                    canDoBox.innerHTML = "Ventas de títulos contra moneda extranjera por cartera propia de manera diaria.";
-                    restrictionsBox.innerHTML = "La Posición de Moneda Extranjera Neta (PMEN) del ALyC no debe generar saldo a favor diario posterior a las ventas (netas de compras).";
-                    exceptionsBox.innerHTML = "Se define restando los saldos procedentes de préstamos o alquileres registrados en el pasivo comercial.";
-                } 
-                else if (action === 'recomposicion') {
-                    badge.classList.add('bg-iolTeal-500/20', 'text-iolTeal-neon', 'border', 'border-iolTeal-500/30');
-                    badge.innerHTML = '<i class="fas fa-history mr-1"></i> Recomposición PMEN';
-                    
-                    canDoBox.innerHTML = "Se admite recomponer los stocks históricos de la PMEN que el agente poseía al 01/06/2026.";
-                    restrictionsBox.innerHTML = "Establece topes mensuales del 15% del PN Neto total y diario del 3% del PN Neto.";
-                    exceptionsBox.innerHTML = "Quedan fuera de recomposición los fondos destinados a suscripción primaria o compra secundaria de Valores Negociables Cortos (<1 año) en los primeros 90 días.";
-                }
-            }
-
-            else if (profile === 'juridica') {
-                if (action === 'mulc_90') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-handshake mr-1"></i> Compromiso de Acceso';
-                    
-                    canDoBox.innerHTML = "Operar de manera cambiaria libremente en el mercado de capitales si no requiere acceso al MULC de manera simultánea.";
-                    restrictionsBox.innerHTML = "Si requiere o realiza operaciones en el MULC, se compromete a que desde el momento del acceso y por los 90 días corridos previos y subsiguientes no realizará operaciones restringidas en el mercado de capitales (de manera directa, indirecta o por cuenta y orden de terceros).";
-                    exceptionsBox.innerHTML = "Se exceptúan ventas vinculadas con fondos de créditos hipotecarios UVA para compra de inmuebles y BOPREAL primarios.";
-                } 
-                else if (action === 'com_7340') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-university mr-1"></i> Control Com. "A" 7340';
-                    
-                    canDoBox.innerHTML = "Concertar compras y ventas de títulos valores con liquidación en dólares.";
-                    restrictionsBox.innerHTML = "Los fondos de liquidación deben transferirse de forma forzosa hacia/desde cuentas bancarias de igual titularidad antes de nuevas operaciones.";
-                    exceptionsBox.innerHTML = "Com. \"A\" 8042: Exceptuado si se opera con dólares cobrados en los 15 días hábiles previos por amortización/intereses de emisores locales (neutro fiscal: Cable sí, MEP no). Asimismo, se permite utilizar los fondos provenientes o derivados de licitaciones primarias y de Fondos Comunes de Inversión (FCI) en dólares.";
-                } 
-                else if (action === 'venta_usd') {
-                    badge.classList.add('bg-iolTeal-500/20', 'text-iolTeal-neon', 'border', 'border-iolTeal-500/30');
-                    badge.innerHTML = '<i class="fas fa-clock mr-1"></i> Plazo de Permanencia';
-                    
-                    canDoBox.innerHTML = "Proceder con la venta de activos negociables contra dólares (MEP o Cable).";
-                    restrictionsBox.innerHTML = "Se requiere cumplir con el parking de 1 día hábil si los activos proceden de adquisiciones en pesos. Asimismo, aplica la RG 1018 CNV: no mantener posiciones tomadoras activas en cauciones, pases o financiamiento en pesos local.";
-                    exceptionsBox.innerHTML = "No aplica parking si los activos fueron adquiridos previamente contra dólares o proceden de créditos UVA. Tampoco rige la limitación de financiamiento local o parking para BOPREAL primarios.";
-                }
-            }
-
-            else if (profile === 'cdi_cie') {
-                if (action === 'mulc_90') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-handshake mr-1"></i> Pauta de Cambios';
-                    
-                    canDoBox.innerHTML = "Efectuar arbitrajes y operatoria local de valores negociables si no requiere acceder al MULC simultáneamente.";
-                    restrictionsBox.innerHTML = "Si requiere o realiza operaciones en el MULC, se compromete a que desde el momento del acceso y por los 90 días corridos previos y subsiguientes no realizará operaciones restringidas en el mercado de capitales (de manera directa, indirecta o por cuenta y orden de terceros).";
-                    exceptionsBox.innerHTML = "Admite el curso de transferencias y ventas con BOPREAL originados en colocaciones primarias.";
-                } 
-                else if (action === 'com_7340') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-university mr-1"></i> Retorno Bancario';
-                    
-                    canDoBox.innerHTML = "Concertar compras y ventas de títulos valores con liquidación en dólares.";
-                    restrictionsBox.innerHTML = "Obligación de reingreso y salida de fondos cambiarios de forma bancarizada previa a cursar nuevas operaciones. Se restringe además la tenencia de cauciones o pasivos de financiamiento en pesos (RG 1018).";
-                    exceptionsBox.innerHTML = "Com. \"A\" 8042: Beneficio para reinversiones impositivamente neutras (Cable) de cupones de residentes dentro de los 15 días hábiles. Asimismo, se permite utilizar los fondos provenientes o derivados de licitaciones primarias y de Fondos Comunes de Inversión (FCI) en dólares.";
-                }
-                else if (action === 'venta_usd') {
-                    badge.classList.add('bg-iolTeal-500/20', 'text-iolTeal-neon', 'border', 'border-iolTeal-500/30');
-                    badge.innerHTML = '<i class="fas fa-clock mr-1"></i> Plazo de Permanencia';
-                    
-                    canDoBox.innerHTML = "Proceder con la venta de activos negociables contra dólares (MEP o Cable).";
-                    restrictionsBox.innerHTML = "Se requiere cumplir con el parking de 1 día hábil si los activos proceden de adquisiciones en pesos. Asimismo, aplica la RG 1018 CNV: no mantener posiciones tomadoras activas en cauciones, pases o financiamiento en pesos local.";
-                    exceptionsBox.innerHTML = "Sin parking si se adquirieron contra USD. Exceptuado de parking y financiamiento para BOPREAL primarios y créditos UVA.";
-                }
-                else if (action === 'limite_monto') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-sort-amount-up mr-1"></i> Límite de Volumen';
-                    
-                    canDoBox.innerHTML = "Concertar operaciones locales en el mercado de capitales.";
-                    restrictionsBox.innerHTML = "El volumen diario operado en Operaciones Restringidas no puede superar los $200.000.000. Aplica tanto a clientes con CDI/CIE como a intermediarios o entidades similares del exterior reguladas (por cada cuenta de tercero o por cuenta propia).";
-                    exceptionsBox.innerHTML = "Quedan exceptuados del límite de $200M: giros/transferencias al exterior con títulos de licitación primaria (Tesoro &ge;180 días, deuda &ge;2 años, BOPREAL primario o tenencias &ge;365 días), pago de dividendos aprobados por asamblea, ventas de BOPREAL primarios y operaciones con créditos hipotecarios UVA.";
-                } 
-            }
-
-            else if (profile === 'controlante') {
-                if (action === 'operaciones_bolsa') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-user-shield mr-1"></i> Pauta de Controlante';
-                    
-                    canDoBox.innerHTML = "Mantener tenencias accionarias y operatoria normal sin fines cambiarios restringidos.";
-                    restrictionsBox.innerHTML = "Se recomienda abstenerse de las 7 operaciones del mercado de capitales (ventas cambiarias, canjes, transferencias externas, CEDEARs) si la sociedad ingresa al MULC.";
-                    exceptionsBox.innerHTML = "No aplica si la firma controlada no accede ni requiere acceder al mercado cambiario oficial.";
-                } 
-                else if (action === 'distribucion_div') {
-                    badge.classList.add('bg-amber-500/20', 'text-amber-300', 'border', 'border-amber-500/30');
-                    badge.innerHTML = '<i class="fas fa-coins mr-1"></i> Cobro de Dividendos';
-                    
-                    canDoBox.innerHTML = "Cobrar las utilidades distribuidas por la sociedad local controlada.";
-                    restrictionsBox.innerHTML = "Por corresponsabilidad regulatoria, ante cobros recientes, se acentúa la conveniencia de abstenerse de operaciones bursátiles en moneda extranjera.";
-                    exceptionsBox.innerHTML = "Se aconseja el análisis caso por caso por el equipo de cumplimiento para verificar la procedencia impositiva.";
-                }
+            if (client && optionsMap[client]) {
+                operationSelect.disabled = false;
+                optionsMap[client].forEach(opt => {
+                    operationSelect.innerHTML += `<option value="${opt.val}">${opt.text}</option>`;
+                });
+            } else {
+                operationSelect.disabled = true;
+                operationSelect.innerHTML = '<option value="">-- Primero elija un cliente --</option>';
             }
         }
 
-        // Initialize Wizard and Selectors on load
-        window.onload = function() {
-            populateOperations();
-            const profileSelect = document.getElementById('wizardProfile');
-            if (profileSelect) {
-                profileSelect.addEventListener('change', populateOperations);
+        function showResult() {
+            const client = clientSelect.value;
+            const op = operationSelect.value;
+            
+            if (client && op && rulebook[client] && rulebook[client][op]) {
+                const data = rulebook[client][op];
+                
+                document.getElementById('statusIcon').innerHTML = data.icon;
+                document.getElementById('resultTitle').innerText = data.title;
+                
+                fillList('canDoList', data.canDo);
+                fillList('restrictionsList', data.restrictions);
+                fillList('exceptionsList', data.exceptions);
+                
+                toggleSection('restrictionsSection', data.restrictions.length > 0);
+                toggleSection('exceptionsSection', data.exceptions.length > 0);
+                
+                wizardResult.classList.remove('hidden');
+            } else {
+                wizardResult.classList.add('hidden');
             }
-        };
+        }
+
+        function fillList(elementId, items) {
+            const ul = document.getElementById(elementId);
+            ul.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+        }
+
+        function toggleSection(elementId, show) {
+            const el = document.getElementById(elementId);
+            if(show) el.classList.remove('hidden');
+            else el.classList.add('hidden');
+        }
+
+        clientSelect.addEventListener('change', populateOperations);
+        operationSelect.addEventListener('change', showResult);
     </script>
 </body>
 </html>
